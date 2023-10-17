@@ -1,0 +1,21 @@
+dbt_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: "postgres"
+      host: "localhost"
+      user: "tiagobratzheck"
+      password: "tiagobratzheck"
+      port: 5432
+      dbname: "db_delivery"
+      schema: "transactional"
+      threads: 4
+    prod:
+      type: "postgres"
+      host: "localhost"
+      user: "tiagobratzheck"
+      password: "tiagobratzheck"
+      port: 5432
+      dbname: "db_delivery"
+      schema: "analytics"
+      threads: 4

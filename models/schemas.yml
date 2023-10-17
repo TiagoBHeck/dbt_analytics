@@ -1,0 +1,73 @@
+version: 2
+
+sources:
+  - name: postgres
+    database: db_delivery
+    schema: transactional
+    tables:
+      - name: accounts
+        tags: ['painel_contas', 'Contas']
+      - name: customers
+        tags: ['painel_contas', 'Clientes']
+      - name: pix_movements
+        tags: ['painel_contas', 'Movimentos']
+      - name: transfer_ins
+        tags: ['painel_contas', 'Entradas']
+      - name: transfer_outs
+        tags: ['painel_contas', 'Saídas']
+      - name: city
+        tags: ['localizacao', 'cidades']
+      - name: state
+        tags: ['localizacao', 'estados']
+      - name: country
+        tags: ['localizacao', 'países']
+      - name: d_time
+        tags: ['data']
+      - name: d_week
+        tags: ['data', 'semana']
+      - name: d_weekday
+        tags: ['data', 'dia_semana']
+      - name: d_month
+        tags: ['data', 'mês']
+      - name: d_year
+        tags: ['data', 'ano']
+      
+
+exposures:
+  - name: dashboard accounts
+    tags: ['painel_contas', 'daily']
+    label: dashboard accounts
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      Did someone say "exponential growth"?
+    depends_on:
+      - ref('stg_accounts')     
+      - source('postgres', 'customers')  
+    owner:
+      name: Tiago Bratz Heck
+      email: tiagobratzheck@hotmail.com
+
+models:
+  - name: stg_accounts
+    columns:
+      - name: account_id
+        description: Table primary key
+        tests:
+          - unique  
+          - not_null        
+      - name: customer_id
+        description: Table foreign key
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['active', 'inactive']
+      
+         
