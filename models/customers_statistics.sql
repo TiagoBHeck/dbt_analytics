@@ -4,7 +4,7 @@
     )
 }}
 
-WITH movements_stats AS (
+WITH customers_stats AS (
 
   SELECT account_id, 
          sum(pix_amount) as total_amount,
@@ -19,4 +19,4 @@ WITH movements_stats AS (
 
 )
 
-SELECT * FROM movements_stats
+SELECT * FROM customers_stats
