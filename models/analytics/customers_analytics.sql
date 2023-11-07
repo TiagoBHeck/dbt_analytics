@@ -4,7 +4,6 @@
     )
 }}
 
-
 -- STEP 1: IMPORTS
 WITH customers AS (
   SELECT * FROM {{ source('postgres', 'customers') }}
