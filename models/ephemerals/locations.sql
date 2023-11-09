@@ -4,7 +4,6 @@
     )
 }}
 
-
 SELECT _city.city_id,
        _city.city,
        _state.state,

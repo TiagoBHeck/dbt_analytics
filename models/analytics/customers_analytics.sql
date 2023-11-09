@@ -20,6 +20,7 @@ customers_analytics_summarized AS (
          concat(customers.first_name, ' ', customers.last_name) as customer_name, 
          locations.city,
          locations.state,
+         {{ uf_to_state('locations.state') }} as state_name,
          locations.country,                 
          stats.min_amount,
          stats.max_amount,

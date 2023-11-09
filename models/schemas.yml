@@ -34,17 +34,18 @@ sources:
       
 
 exposures:
-  - name: dashboard accounts
-    tags: ['painel_contas', 'daily']
-    label: dashboard accounts
-    type: dashboard
-    maturity: high
-    url: https://bi.tool/dashboards/1
+  - name: customers_analytics__view
+    tags: ['painel_contas', 'daily', 'analysis']
+    label: Customer analytics view
+    type: analysis
+    maturity: high    
     description: >
-      Did someone say "exponential growth"?
+      This customers view has been created for customers statistics analysis purposes
     depends_on:
-      - ref('stg_accounts')     
-      - source('postgres', 'customers')  
+      - ref('customers_statistics')
+      - ref('locations')     
+      - source('postgres', 'accounts')
+      - source('postgres', 'city')  
     owner:
       name: Tiago Bratz Heck
       email: tiagobratzheck@hotmail.com
