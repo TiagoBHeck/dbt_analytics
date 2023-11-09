@@ -103,4 +103,4 @@ exposures:
 
 ## Author
 - Tiago Bratz Heck
-[^1]:Acesse meu perfil no [LinkedIn](https://www.linkedin.com/in/tiago-bratz-heck-0b9b5696/)
+##### Acesse meu perfil no [LinkedIn](https://www.linkedin.com/in/tiago-bratz-heck-0b9b5696/)
