@@ -73,9 +73,34 @@ SELECT _city.city_id,
   INNER JOIN {{ source('postgres', 'country') }} AS _country ON _state.country_id = _country.country_id
 ~~~~
 
+#### Exposure YML definition:
+&nbsp;
+```yml
+exposures:
+  - name: customers_analytics__view
+    tags: ['painel_contas', 'daily', 'analysis']
+    label: Customer analytics view
+    type: analysis
+    maturity: high    
+    description: >
+      This customers view has been created for customers statistics analysis purposes
+    depends_on:
+      - ref('customers_statistics')
+      - ref('locations')     
+      - source('postgres', 'accounts')
+      - source('postgres', 'city')  
+    owner:
+      name: Tiago Bratz Heck
+      email: tiagobratzheck@hotmail.com
+```
+
 ## Documentation
 
 #### One of the most attractive features of DBT is its documentation that is automatically generated after each project change. Below we see all the data flow created to obtain the view for analytics
 
 &nbsp;
 ![alt text](images/dbt_diagram.png "customers analytics view")
+
+## Author
+- Tiago Bratz Heck
+[^1]:Acesse meu perfil no [LinkedIn](https://www.linkedin.com/in/tiago-bratz-heck-0b9b5696/)
